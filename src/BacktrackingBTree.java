@@ -29,4 +29,8 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 	}
 	//########################
 	//MAYA
+	public int foo2(int num) {
+		return num;
+	}
+		
 }
