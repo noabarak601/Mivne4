@@ -24,6 +24,9 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 	    throw new UnsupportedOperationException("You should implement this");
 	}
 	//NOA
+	public static void foo() {
+		System.out.println("Noa queen");
+	}
 	//########################
 	//MAYA
 }
