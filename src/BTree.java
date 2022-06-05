@@ -1,5 +1,7 @@
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Deque;
+import java.util.LinkedList;
 
 
 @SuppressWarnings("unchecked")
@@ -11,7 +13,7 @@ public class BTree<T extends Comparable<T>> {
     protected int size = 0;
     
     //You may add fields here.
-
+    protected Deque<Object> were_splitted = new LinkedList<>();
     /**
      * Default Constructor for a 2-3 B-Tree.
      */
@@ -41,6 +43,7 @@ public class BTree<T extends Comparable<T>> {
      * @param value - the inserted value
      */
     public void insert(T value) {
+    	were_splitted.addFirst(true);
         if (root == null) {
             root = new Node<T>(null, maxDegree);
             root.addKey(value);
@@ -50,7 +53,7 @@ public class BTree<T extends Comparable<T>> {
             while (currentNode != null && !wasAdded) {
             	// If the node has 2t-1 keys then split it
                 if (currentNode.getNumberOfKeys() == maxDegree - 1) {
-                	split(currentNode);
+                	were_splitted.addFirst((Integer)split(currentNode));
                 	
                 	// Return to the parent and descend to the needed node
                 	currentNode = currentNode.parent != null ? currentNode.parent : root;
@@ -70,7 +73,7 @@ public class BTree<T extends Comparable<T>> {
         }
 
         ++size;
-        
+        were_splitted.addFirst((Integer)value);
     }
     
     /**
