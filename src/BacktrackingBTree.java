@@ -15,7 +15,6 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 		Node<T> node = this.getNode(value);
 		Node<T> leftChild = node.children[node.indexOf(value)];
 		Node<T> rightChild = node.children[node.indexOf(value)+1];
-		//add all keys to left child
 		
 		for(int i=0;i<leftChild.numOfKeys;i++)
 		{
@@ -52,12 +51,6 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 				Node<T>was_splitted_node = this.getNode((T)(was_splitted));
 				
 				mergeWithChildren(was_splitted);
-//				was_splitted_node.removeKey(was_splitted);
-//				for(int i=0;i<was_splitted_node.getNumberOfChildren();i++)
-//				{
-//					was_splitted_node.removeChild(i);
-//				}
-				
 			}
 		}
 		
