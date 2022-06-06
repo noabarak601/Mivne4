@@ -59,6 +59,5 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 	    list.add(7);
 	    list.add(8);
 	    return list;
-	}
-		
+	}	
 }

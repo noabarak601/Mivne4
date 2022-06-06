@@ -10,6 +10,7 @@ public class Test {
 		bt.insert(24);
 		bt.insert(25);
 		bt.insert(26);
+		bt.insert(27);
 		bt.insert(1);
 		bt.insert(2);
 		bt.insert(3);
