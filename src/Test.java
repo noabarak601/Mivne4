@@ -8,17 +8,20 @@ public class Test {
 		bt.insert(16);
 		bt.insert(20);
 		bt.insert(24);
+		bt.insert(25);
 		bt.insert(26);
-		bt.insert(27);
-		
 		bt.insert(1);
 		bt.insert(2);
 		bt.insert(3);
-		bt.insert(13);
 		bt.insert(14);
+		bt.insert(15);
 		bt.insert(9);
+		bt.insert(5);
+		bt.insert(21);
+		bt.insert(22);
 		System.out.println(bt.toString());
-//		bt.Backtrack();
-//		System.out.println(bt.toString());
+		bt.Backtrack();
+		System.out.println(bt.toString());
+	
     }
 }

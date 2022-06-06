@@ -16,23 +16,15 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 		Node<T> leftChild = node.children[node.indexOf(value)];
 		Node<T> rightChild = node.children[node.indexOf(value)+1];
 		
-		for(int i=0;i<leftChild.numOfKeys;i++)
-		{
-			node.addKey(leftChild.keys[i]);
-		}
-		for(int i=0;i<leftChild.numOfChildren;i++)
-		{
-			node.addChild(leftChild.children[i]);
-		}
+		leftChild.addKey(value);
 		for(int i=0;i<rightChild.numOfKeys;i++)
 		{
-			node.addKey(rightChild.keys[i]);
+			leftChild.addKey(rightChild.keys[i]);
 		}
 		for(int i=0;i<rightChild.numOfChildren;i++)
 		{
-			node.addChild(rightChild.children[i]);
+			leftChild.addChild(rightChild.children[i]);
 		}
-		node.removeChild(leftChild);
 		node.removeChild(rightChild);
 	
 	}
