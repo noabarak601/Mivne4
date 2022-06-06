@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.function.ObjDoubleConsumer;
 
 
 @SuppressWarnings("unchecked")
@@ -53,7 +54,7 @@ public class BTree<T extends Comparable<T>> {
             while (currentNode != null && !wasAdded) {
             	// If the node has 2t-1 keys then split it
                 if (currentNode.getNumberOfKeys() == maxDegree - 1) {
-                	were_splitted.addFirst((Integer)split(currentNode));
+                	were_splitted.addFirst(split(currentNode));
                 	
                 	// Return to the parent and descend to the needed node
                 	currentNode = currentNode.parent != null ? currentNode.parent : root;
@@ -73,7 +74,7 @@ public class BTree<T extends Comparable<T>> {
         }
 
         ++size;
-        were_splitted.addFirst((Integer)value);
+        were_splitted.addFirst(value);
     }
     
     /**
