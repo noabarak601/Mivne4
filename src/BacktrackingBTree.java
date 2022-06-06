@@ -16,15 +16,26 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 		Node<T> leftChild = node.children[node.indexOf(value)];
 		Node<T> rightChild = node.children[node.indexOf(value)+1];
 		//add all keys to left child
-		leftChild.addKey(value);
+		
+		for(int i=0;i<leftChild.numOfKeys;i++)
+		{
+			node.addKey(leftChild.keys[i]);
+		}
+		for(int i=0;i<leftChild.numOfChildren;i++)
+		{
+			node.addChild(leftChild.children[i]);
+		}
 		for(int i=0;i<rightChild.numOfKeys;i++)
 		{
-			leftChild.addKey(rightChild.keys[i]);
+			node.addKey(rightChild.keys[i]);
 		}
 		for(int i=0;i<rightChild.numOfChildren;i++)
 		{
-			leftChild.addChild(rightChild.children[i]);
+			node.addChild(rightChild.children[i]);
 		}
+		node.removeChild(leftChild);
+		node.removeChild(rightChild);
+	
 	}
 	//You are to implement the function Backtrack.
 	public void Backtrack() {
@@ -32,13 +43,21 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 		if(!were_splitted.isEmpty())
 		{
 			T delete = (T) were_splitted.pop();
-			Node<T>node = this.getNode((T)(delete));
-			node.removeKey(delete);
+			Node<T>delete_node = this.getNode((T)(delete));
+			delete_node.removeKey(delete);
 			while(!(were_splitted.peek() instanceof Boolean))
 			//splits were made:
 			{
 				T was_splitted = (T) were_splitted.pop();
+				Node<T>was_splitted_node = this.getNode((T)(was_splitted));
+				
 				mergeWithChildren(was_splitted);
+//				was_splitted_node.removeKey(was_splitted);
+//				for(int i=0;i<was_splitted_node.getNumberOfChildren();i++)
+//				{
+//					was_splitted_node.removeChild(i);
+//				}
+				
 			}
 		}
 		
@@ -55,15 +74,6 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 	    list.add(7);
 	    list.add(8);
 	    return list;
-	}
-	//NOA
-	public static void foo() {
-		System.out.println("Noa queen");
-	}
-	//########################
-	//MAYA
-	public int foo2(int num) {
-		return num+1;
 	}
 		
 }
