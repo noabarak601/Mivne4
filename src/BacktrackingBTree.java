@@ -26,7 +26,11 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 			leftChild.addChild(rightChild.children[i]);
 		}
 		node.removeChild(rightChild);
-	
+		node.removeKey(value);
+		if(node.numOfKeys==0) 
+		{
+			root = leftChild;
+		}
 	}
 	//You are to implement the function Backtrack.
 	public void Backtrack() {
@@ -43,6 +47,11 @@ public class BacktrackingBTree<T extends Comparable<T>> extends BTree<T> {
 				Node<T>was_splitted_node = this.getNode((T)(was_splitted));
 				
 				mergeWithChildren(was_splitted);
+			}
+			were_splitted.pop();
+			if(root.getNumberOfKeys()==0)
+			{
+				root = null;
 			}
 		}
 		
