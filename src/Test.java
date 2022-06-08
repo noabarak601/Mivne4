@@ -7,7 +7,7 @@ public class Test {
 		bt.insert(-431.0);
 		bt.insert(457.0);
 		bt.insert(-246.0);
-		
+		BacktrackingAVL.AVLTreeBacktrackingCounterExample();
 		bt.insert(30.0);
 //		bt.insert(35.0);
 //		bt.insert(40.0);

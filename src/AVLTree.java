@@ -2,9 +2,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class AVLTree implements Iterable<Integer> {
+	private Deque<Object> rotations = new LinkedList<>();
     // You may edit the following nested class:
     protected class Node {
     	public Node left = null;
@@ -12,7 +15,7 @@ public class AVLTree implements Iterable<Integer> {
     	public Node parent = null;
     	public int height = 0;
     	public int value;
-
+    	
     	public Node(int val) {
             this.value = val;
         }
@@ -44,6 +47,8 @@ public class AVLTree implements Iterable<Integer> {
      * IMPORTANT: You may add code to both "insert" and "insertNode" functions.
      */
 	public void insert(int value) {
+		rotations.push(true);
+		rotations.push(value);
     	root = insertNode(root, value);
     }
 	
@@ -91,6 +96,7 @@ public class AVLTree implements Iterable<Integer> {
     
 	// You may add additional code to the next two functions.
     protected Node rotateRight(Node y) {
+    	rotations.push("Right");
         Node x = y.left;
         Node T2 = x.right;
 
@@ -114,6 +120,7 @@ public class AVLTree implements Iterable<Integer> {
     }
 
     protected Node rotateLeft(Node x) {
+    	rotations.push("Left");
         Node y = x.right;
         Node T2 = y.left;
 
